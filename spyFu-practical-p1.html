@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Ryan Mills - SpyFu - P1</title>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css"/>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+	<style>
+		/* Base Element Styles */
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			font: 1em/1.5 'Open Sans', sans-serif;
+			color: #373737;
+			background: #eaeaea;
+			margin: 0;
+		}
+		h1 {
+			text-transform: uppercase;
+		}
+		h2 {
+			font-size: 1.125em;
+			color: #4a89ca;
+			margin: 0;
+		}
+		h1 span {
+			text-transform: none;
+		}
+		ul, p {
+			font-size: .875em;
+			line-height: 1.4;
+			margin: 0 0 1.5em;
+		}
+	
+		/* Layout Containers */
+		.container, .content {
+			margin: auto;
+		}		
+		.container {
+			height: 100%;
+			width: 94%;
+			max-width: 1260px;
+			padding: 0 2.25em 3em;
+			background: #fff;
+		}
+		.btn-container {
+			display: inline-flex;
+		}
+		.main-header {
+			text-align: center;
+			padding: 1em 0;
+		}
+
+		/* Page Elements */
+		#btn {
+			font-size: .8em;
+			color: #fff;
+			width: 60px;
+			line-height: 1;
+			font-weight: 700;
+			text-transform: uppercase;
+			display: block;
+			padding: 10px 0 6px;
+			margin: 5px 8px 5px 0;
+			border-radius: 4px;
+			background: rgba(74,137,202, .8);
+			outline: none;
+			border: none;
+		}
+		#btn:hover, #btn:active, #btn:focus {
+			cursor: pointer;
+		}
+		#btn.reload {
+			font-size: 1.2em;
+			padding: 0;
+			width: 30px;
+		}
+		.hex-arrow {
+			font-size: 1.2em;
+		}
+
+		/* Media Queries */
+		@media (min-width: 1025px) {
+			.content {
+				max-width: 900px;
+				margin: auto;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<header class="main-header">
+			<h1><span>SpyFu</span> - Practical: Part 1</h1>
+		</header>
+		<div class="content">
+			<h2>Design Parameters</h2>
+			<div>
+				<ul>
+					<li>Create an HTML File.</li>
+					<li>Use inline JavaScript.</li>
+					<li>Print all odd numbers between 0 - 100 on the page.</li>
+				</ul>
+			</div>
+			<div>
+				<h2>Implementation</h2>
+				<p>Please click the button to run the Javascript.</p>
+				<div class="btn-container">
+					<button id="btn" onclick="printOdds()">Run</button>
+					<button id="btn" class="reload" onclick="reloadPage()">&#x21bb;</button>
+				</div>
+				<p class="display-numbers"></p>
+			</div>
+		</div>
+	</div>
+
+	<script>
+	// Print Function
+	function printOdds() {
+		// Assign variable to the 'p' element with class name of 'display-numbers'
+		// so output displays in designated area.
+		var displayNumbers = document.getElementsByClassName('display-numbers')[0];
+
+		// Loop that iterates as long as 'i' is less than 100
+		for(var i = 0; i < 100; i++) {
+
+			// Check to see if 'i % 2' = 1 or 0, if 1 continue outside loop.
+			if((i % 2) === 1) {
+
+				// Display the innerHtml of the 'p' element with the class name of 'display-numbers'.
+				displayNumbers.innerHTML += i + ' ';
+
+				continue;
+			}		
+		}
+
+		// Change button background to green to represent clicked.
+		var btn = document.getElementById("btn");
+		btn.style.backgroundColor = "green";	
+	};
+
+	// Reload Function
+	function reloadPage() {
+    	location.reload();
+	};
+	</script>
+</body>
+
+</html>

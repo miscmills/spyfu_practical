@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Ryan Mills - SpyFu - P2</title>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css"/>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+	<style>
+		/* Base Element Styles */
+		* {
+			box-sizing: border-box;
+		}
+		body {
+			font: 1em/1.5 'Open Sans', sans-serif;
+			color: #373737;
+			background: #eaeaea;
+			margin: 0;
+		}
+		h1 {
+			text-transform: uppercase;
+		}
+		h2 {
+			font-size: 1.125em;
+			color: #4a89ca;
+			margin: 0;
+		}
+		h1 span {
+			text-transform: none;
+		}
+		ul, p {
+			font-size: .875em;
+			line-height: 1.4;
+			margin: 0 0 1.5em;
+		}
+	
+		/* Layout Containers */
+		.container, .content {
+			margin: auto;
+		}		
+		.container {
+			height: 100%;
+			width: 94%;
+			max-width: 1260px;
+			padding: 0 2.25em 3em;
+			background: #fff;
+		}
+		.btn-container, .input-container, .display-container {
+			display: flex;
+		}
+		.input-container {
+			height: 24px;
+			margin: 5px 0;
+		}
+		.display-container {
+			margin: 5px 0; 
+		}
+		.main-header {
+			text-align: center;
+			padding: 1em 0;
+		}
+
+		/* Page Elements */
+		#btn {
+			font-size: .8em;
+			color: #fff;
+			width: 60px;
+			line-height: 1;
+			font-weight: 700;
+			text-transform: uppercase;
+			display: block;
+			padding: 10px 0 6px;
+			margin: 5px 8px 5px 0;
+			border-radius: 4px;
+			background: rgba(74,137,202, .8);
+			outline: none;
+			border: none;
+		}
+		#btn:hover, #btn:active, #btn:focus {
+			cursor: pointer;
+		}
+		#btn.reload {
+			font-size: 1.2em;
+			padding: 0;
+			width: 30px;
+		}
+		p.input-label {
+			padding: 1px 5px 0 0;
+			margin: 0;
+		}
+		#display-reverse {
+			padding-left: 5px;
+		}
+		#validation-msg {
+			color: red;
+			margin-bottom: .5em;
+			font-size: .7em;
+		}
+
+		/* Media Queries */
+		@media (min-width: 1025px) {
+			.content {
+				max-width: 900px;
+				margin: auto;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<header class="main-header">
+			<h1><span>SpyFu</span> - Practical: Part 2</h1>
+		</header>
+		<div class="content">
+			<h2>Design Parameters</h2>
+			<div>
+				<ul>
+					<li>Create an HTML File.</li>
+					<li>Use inline JavaScript.</li>
+					<li>Accept a user input.</li>
+					<li>Display the user input in reverse.</li>
+				</ul>
+			</div>
+			<div>
+				<h2>Implementation</h2>
+				<p>Please input a string value in the input field then click the button to run the Javascript.</p>
+				<form id="userInputFrm">
+					<div class="input-container">
+						<p class="input-label">User Input:</p> 
+						<input type="text" id="userInput" maxlength="15" required>
+					</div>
+					<p id="validation-msg"></p>
+
+					<div class="btn-container">
+						<button type="button" id="btn" onclick="reverseString()">Run</button>
+						<button type="button" id="btn" class="reload" onclick="reloadPage()">&#x21bb;</button>
+					</div>
+				</form>
+				<div class="display-container">
+					<p>Reversed String:</p><p id="display-reverse"></p>
+				</div>
+			</div>			
+		</div>	
+	</div>
+
+	<script>
+	// Reverse a string Function
+	function reverseString() {
+
+		// Get input element for validation check.
+		var userInput = document.getElementById("userInput");
+
+		// Validation Check
+		if(userInput.value.length >= 2 && userInput.value.length <= 15) {
+
+			// Success - Do recursion
+			var userString = document.getElementById("userInput").value;
+			var stringReversed = '';
+
+			for (var i = userString.length - 1; i >= 0; i--) {
+				stringReversed += userString[i];
+			}
+
+			// Display string reversed.
+			document.getElementById("display-reverse").innerHTML = stringReversed;
+
+			// Change button background to green to represent clicked.
+			var btn = document.getElementById("btn");
+			btn.style.backgroundColor = "green";	
+
+		} else {
+
+			// Failed
+			var validationMsg = document.getElementById("validation-msg");
+			validationMsg.innerHTML= "Make sure your input value is between 2-15 characters long.";
+		}
+	};
+
+	// Reload Function
+	function reloadPage() {
+    	location.reload();
+	};
+	</script>
+</body>
+
+</html>
